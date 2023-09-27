@@ -1,0 +1,80 @@
+body{
+    margin: auto;
+    max-width: 60%;
+    background-color: rgb(236, 245, 245);
+}
+.top_details{
+    display: flex;
+    justify-content: space-between;
+    flex:1;
+    align-items: center;
+    margin: 15px 18px;    
+    
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background-color: rgb(27, 15, 15);
+}
+.image{
+    display: block;
+    margin-left: 50px;
+    margin-right: auto;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border: solid white;
+}
+
+.top_subpart{
+    color: aliceblue;
+    margin-right: 80px;
+}
+.name{
+    font-size: 35px;
+    margin-bottom: auto;
+}
+.phone{
+    margin-top: 10px;
+}
+.em{
+    margin-top: auto;
+}
+.links{
+    font-size: 20px;
+}
+
+.middle_details{
+    display: flex;
+    justify-content: space-between;
+    flex:1;
+    align-items: center;
+    margin: 15px 18px;    
+       
+}
+.edu_title,.tech_title{
+    margin-top: auto;
+    font-size: 26px;
+    font-weight: 800;
+}
+.edu_university{
+    font-weight: 600;
+    font-size: 18px;
+}
+.edu i{
+    margin-right: 10px;
+}
+.right_part{
+    margin-left: 30px;
+}
+.exp_title,.hobby,.proj_title{
+    
+    margin-top: auto;
+    font-size: 26px;
+    font-weight: 800;
+}
+.exp_subtitle{
+   
+    font-weight: 600;
+}
