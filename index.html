@@ -3,30 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App</title>
+    <title>Books</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
     <link rel="stylesheet" href="style.css">
+    
+    <script>
+        $(document).ready(function () {
+            $(".searchBtn").click(function () {
+                var bookName = $(".bookName").val();
+                console.log("Button clicked...");
+                findBooks(bookName);
+                console.log("Button clicked");
+            });
+    
+            // $(".searchBtn2").click(function () {
+            //     var bookName = $(".bookName").val();
+            //     console.log("Button 2 clicked..");
+            //     findBooks(bookName);
+            //     console.log("Button 2 clicked");
+            // });
+    
+            function findBooks(bookName) {
+                console.log("find books function called");
+                $.ajax({
+                    type: "GET",
+                    url: "https://www.googleapis.com/books/v1/volumes?q=" + bookName,
+                    success: function (response) {
+                        console.log(response);
+                        $(".cardBox").empty();
+    
+                        for (var i = 0; i < response.items.length; i++) {
+                            var book = response.items[i];
+    
+                            var card = $("<div>").addClass("card");
+
+                                var image = $("<img>").addClass("card-image").attr("src", book.volumeInfo.imageLinks.thumbnail);
+                            card.append(image);
+    
+                            var title = $("<h3>").addClass("card-title").text(book.volumeInfo.title);
+                            card.append(title);
+    
+                            var author = $("<p>").addClass("card-author").text(book.volumeInfo.authors[0]);
+                            card.append(author);
+    
+                           
+    
+                            var description = $("<p>").addClass("desc").text(book.volumeInfo.description);
+                            card.append(description);
+    
+                            $(".cardBox").append(card);
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+    
 </head>
 <body>
     <div class="container">
-        <div class="box">
-            <span class="box_title">WEATHER TODAY</span>
-            <div class="search">
-            <input type="text" placeholder="Enter City Name" spellcheck="false">
-            <!-- <button><img src="images/search.png" alt=""></button> -->
-            <button>GO</button>
-            </div>
 
-            <div class="weather">
-                <!-- <h2>City : </h2> <h4 class="city"></h4> <br> -->
-                <h2>Temperature : </h2> <h4 class="temperature"></h4> <br>
-                <h2>Humidity : </h2> <h4 class="humidity"></h4> <br>
-                <h2>Wind Speed : </h2> <h4 class="windSpeed"></h4> <br>
-                <h2>Wind Direction : </h2> <h4 class="windDirection"></h4> 
-
-            </div>
+        <center>
+            <h1 class="heading">GET BOOK DATA</h1>
+            <div class="searchBox">
+            
+            <input type="text" class="bookName" placeholder="Enter Book Name"> <Button  class="searchBtn">OK</Button>
         </div>
-    </div>
+        <!-- <button class="searchBtn2">Search</button> -->
+        </center>
 
-    <script src="script.js"></script>
+        <br>
+        <center>
+            <div class="cardBox">
+            
+            </div>
+
+        </center>
+      
+    </div>
 </body>
 </html>
